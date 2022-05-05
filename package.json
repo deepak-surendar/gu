@@ -1,0 +1,14 @@
+{
+  "name": "gumtree_test",
+  "version": "1.0.0",
+  "description": "Gumtree coding test",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open"
+  },
+  "author": "Deepak",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.6.0"
+  }
+}
