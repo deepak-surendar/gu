@@ -14,3 +14,5 @@ npm test
 ```
 
 In the Cypress app, click on 'gumtree_spec.js' to run the UI and API test
+
+Note: Test code is under /cypress/integration folder/gumtree_spec.js
