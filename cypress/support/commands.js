@@ -14,25 +14,19 @@ Cypress.Commands.add('enterSearchField', (htmlElement, searchCriteria) => {
         .type(searchCriteria)
 })
 
-// Custom command to click on dropdown
-Cypress.Commands.add('clickDropdown', (htmlElement) => {
+// Custom command to click on dropdown or a button
+Cypress.Commands.add('clickDropdownorButton', (htmlElement) => {
     cy.get(htmlElement).should('be.visible')
         .click()
 })
 
-// Custom command to selece an option from a dropdown
+// Custom command to select an option from a dropdown
 Cypress.Commands.add('selectOption', (htmlElement, optionValue) => {
     cy.get(htmlElement).should('be.visible')
         .each(($selectBoxesElements) => {
             cy.wrap($selectBoxesElements).contains(optionValue)
                 .click()
         })
-})
-
-// Custom command to click a button, in this case, Search button
-Cypress.Commands.add('search', (htmlElement) => {
-    cy.get(htmlElement).should('be.visible')
-        .click()
 })
 
 // Custom command to click on First Search Result
