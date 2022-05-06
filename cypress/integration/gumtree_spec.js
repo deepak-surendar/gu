@@ -6,35 +6,25 @@ describe('UI Test - Gumtree search and validate results', () => {
 
     it('should search for Sennheiser Headphones', () => {
         // type search criteria
-        cy.get('input[id="search-query"]').should('be.visible')
-            .type('Sennheiser Headphones')
+        cy.enterSearchField('input[id="search-query"]', 'Sennheiser Headphones')
 
         // click category dropdown
-        cy.get('div#categoryId-wrp').should('be.visible')
-            .click()
+        cy.clickDropdown('div#categoryId-wrp')
+
         // select Electronics & Computer
-        cy.get('div#categoryId-wrpwrapper').should('be.visible')
-            .each(($selectBoxesElements) => {
-                cy.wrap($selectBoxesElements).contains('Electronics & Computer')
-                    .click()
-            })
+        cy.selectOption('div#categoryId-wrpwrapper', 'Electronics & Computer')    
+
         // enter location
-        cy.get('#search-area').should('be.visible')
-            .type('Sydney Region, NSW')
+        cy.enterSearchField('#search-area', 'Sydney Region, NSW')
         
         // click search radius dropdown
-        cy.get('#srch-radius-wrp').should('be.visible')
-            .click()
+        cy.clickDropdown('#srch-radius-wrp')
+             
         // select 20Km
-        cy.get('div#srch-radius-wrpwrapper').should('be.visible')
-            .each(($radiusElements) => {
-                cy.wrap($radiusElements).contains('20km')
-                    .click()
-            })
+        cy.selectOption('div#srch-radius-wrpwrapper', '20km')    
 
         // Search (or) submit the form
-        cy.get('button[type="submit"]').should('be.visible')
-            .click()
+        cy.search('button[type="submit"]')
 
         // click on first search result
         cy.get('div.user-ad-collection-new-design__wrapper--row>a')
