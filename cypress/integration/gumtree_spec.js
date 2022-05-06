@@ -57,7 +57,9 @@ describe('API Test - Gumtree endpoint', () => {
                 // validate some response body fields
                 expect(response.body.adSearchOptions.locationId).to.equal(locationId)
                 expect(response.body.ads.length).to.be.at.least(1)
-                expect(response.body.ads[0].adType).to.equal('OFFERED')
+                expect(response.body.ads[0].adType).to.be.oneOf(['OFFERED'])
+                expect(response.body.ads[0].posterType).to.be.oneOf(['PRIVATE'])
+
                 expect(response.body.ads[0].description.length).to.be.greaterThan(1)
                 expect(response.body.ads[0].categoryId).to.not.be.null
                 expect(response.body.ads[0].title).to.be.a('string')
