@@ -9,17 +9,28 @@
 // ***********************************************
 //
 //
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('enterSearchField', (htmlElement, searchCriteria) => {
+    cy.get(htmlElement).should('be.visible')
+    .type(searchCriteria)
+})
+
+Cypress.Commands.add('clickDropdown', (htmlElement) => {
+    cy.get(htmlElement).should('be.visible')
+            .click()
+})
+
+Cypress.Commands.add('selectOption', (htmlElement, optionValue) => {
+    cy.get(htmlElement).should('be.visible')
+    .each(($selectBoxesElements) => {
+        cy.wrap($selectBoxesElements).contains(optionValue)
+            .click()
+    })
+})
+
+Cypress.Commands.add('search', (htmlElement) => {
+    cy.get(htmlElement).should('be.visible')
+            .click()
+})
+
+
+
