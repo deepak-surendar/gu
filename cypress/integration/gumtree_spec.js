@@ -41,7 +41,8 @@ describe('UI Test - Gumtree search and validate results', () => {
 
 describe('API Test - Gumtree endpoint', () => {
     it('returns search results via api', () => {
-        const endpoint = 'https://ecg-api.gumtree.com.au/api/papi/ads/search?categoryId=0&categoryRedirected=1&includeTopAds=1&keyword=Table&locationId=3003435&page=1&size=20&sortType=DATE_DESCENDING'
+        const locationId = 3003435
+        const endpoint = `https://ecg-api.gumtree.com.au/api/papi/ads/search?categoryId=0&categoryRedirected=1&includeTopAds=1&keyword=Table&locationId=${locationId}&page=1&size=20&sortType=DATE_DESCENDING`
 
         // generate GET request
         cy.request({
@@ -54,6 +55,7 @@ describe('API Test - Gumtree endpoint', () => {
                 expect(response.headers['content-type']).to.include('application/json')
 
                 // validate some response body fields
+                expect(response.body.adSearchOptions.locationId).to.equal(locationId)
                 expect(response.body.ads.length).to.be.at.least(1)
                 expect(response.body.ads[0].adType).to.equal('OFFERED')
                 expect(response.body.ads[0].description.length).to.be.greaterThan(1)
@@ -61,6 +63,11 @@ describe('API Test - Gumtree endpoint', () => {
                 expect(response.body.ads[0].title).to.be.a('string')
                 expect(response.body.ads[0].pictures).to.not.be.empty
                 expect(response.body.ads[0].pictures[0][0]).to.have.keys(['size', 'pictureUrl'])
+
+                response.body.ads.forEach((eachAdItem) => {
+                    cy.log(eachAdItem)
+                    expect(eachAdItem.price).to.have.any.keys('priceType')
+                })
             })
     })
 })
