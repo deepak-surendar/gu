@@ -65,7 +65,6 @@ describe('API Test - Gumtree endpoint', () => {
                 expect(response.body.ads[0].pictures[0][0]).to.have.keys(['size', 'pictureUrl'])
 
                 response.body.ads.forEach((eachAdItem) => {
-                    cy.log(eachAdItem)
                     expect(eachAdItem.price).to.have.any.keys('priceType')
                 })
             })
