@@ -9,7 +9,7 @@ describe('UI Test - Gumtree search and validate results', () => {
         cy.enterSearchField('input[id="search-query"]', 'Sennheiser Headphones')
 
         // click category dropdown
-        cy.clickDropdown('div#categoryId-wrp')
+        cy.clickDropdownorButton('div#categoryId-wrp')
 
         // select Electronics & Computer
         cy.selectOption('div#categoryId-wrpwrapper', 'Electronics & Computer')
@@ -18,13 +18,13 @@ describe('UI Test - Gumtree search and validate results', () => {
         cy.enterSearchField('#search-area', 'Sydney Region, NSW')
 
         // click search radius dropdown
-        cy.clickDropdown('#srch-radius-wrp')
+        cy.clickDropdownorButton('#srch-radius-wrp')
 
         // select 20Km
         cy.selectOption('div#srch-radius-wrpwrapper', '20km')
 
         // Search (or) submit the form
-        cy.search('button[type="submit"]')
+        cy.clickDropdownorButton('button[type="submit"]')
 
         // click on first search result
         cy.clickFirstSearchResult('div.user-ad-collection-new-design__wrapper--row>a')
