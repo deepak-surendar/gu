@@ -32,5 +32,18 @@ Cypress.Commands.add('search', (htmlElement) => {
             .click()
 })
 
+Cypress.Commands.add('clickFirstSearchResult', (htmlElement) => {
+    cy.get('div.user-ad-collection-new-design__wrapper--row>a')
+        .should('have.length.greaterThan', 0)
+        .should('be.visible')
+            .first().click()
+})
 
+Cypress.Commands.add('getAdvertisementId', (htmlElement) => {
+    return cy.get(htmlElement).should('be.visible')
+            .invoke('text')
+})
 
+Cypress.Commands.add('returnAllSimilarSearchResults', (htmlElement) => {
+    return cy.get(htmlElement)
+})
